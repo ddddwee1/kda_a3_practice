@@ -1,0 +1,346 @@
+{
+  "version": "0.3.0",
+  "cases": [
+    {
+      "id": "prefill128",
+      "suites": [
+        "smoke",
+        "core"
+      ],
+      "B": 1,
+      "T": 128,
+      "H": 1,
+      "HV": 1,
+      "K": 128,
+      "V": 128,
+      "seed": 2026,
+      "gate": "moderate",
+      "beta": "random",
+      "state": "none"
+    },
+    {
+      "id": "prefill512",
+      "suites": [
+        "smoke",
+        "core"
+      ],
+      "B": 1,
+      "T": 512,
+      "H": 1,
+      "HV": 1,
+      "K": 128,
+      "V": 128,
+      "seed": 2027,
+      "gate": "moderate",
+      "beta": "random",
+      "state": "zero"
+    },
+    {
+      "id": "prefill_tail513",
+      "suites": [
+        "smoke",
+        "core"
+      ],
+      "B": 1,
+      "T": 513,
+      "H": 1,
+      "HV": 1,
+      "K": 128,
+      "V": 128,
+      "seed": 2028,
+      "gate": "weak",
+      "beta": "random",
+      "state": "nonzero"
+    },
+    {
+      "id": "prefill_tail255",
+      "suites": [
+        "core"
+      ],
+      "B": 1,
+      "T": 255,
+      "H": 2,
+      "HV": 2,
+      "K": 128,
+      "V": 128,
+      "seed": 2029,
+      "gate": "moderate",
+      "beta": "random",
+      "state": "nonzero"
+    },
+    {
+      "id": "prefill256_batched",
+      "suites": [
+        "core"
+      ],
+      "B": 2,
+      "T": 256,
+      "H": 3,
+      "HV": 3,
+      "K": 128,
+      "V": 128,
+      "seed": 2030,
+      "gate": "weak",
+      "beta": "random",
+      "state": "none"
+    },
+    {
+      "id": "prefill_tail511",
+      "suites": [
+        "core"
+      ],
+      "B": 1,
+      "T": 511,
+      "H": 3,
+      "HV": 3,
+      "K": 128,
+      "V": 128,
+      "seed": 2031,
+      "gate": "moderate",
+      "beta": "random",
+      "state": "nonzero"
+    },
+    {
+      "id": "prefill1024_batched",
+      "suites": [
+        "core"
+      ],
+      "B": 2,
+      "T": 1024,
+      "H": 2,
+      "HV": 2,
+      "K": 128,
+      "V": 128,
+      "seed": 2032,
+      "gate": "weak",
+      "beta": "random",
+      "state": "nonzero"
+    },
+    {
+      "id": "prefill_many_heads_tail",
+      "suites": [
+        "core"
+      ],
+      "B": 1,
+      "T": 257,
+      "H": 8,
+      "HV": 8,
+      "K": 128,
+      "V": 128,
+      "seed": 2033,
+      "gate": "moderate",
+      "beta": "random",
+      "state": "nonzero"
+    },
+    {
+      "id": "prefill2048_weak_decay",
+      "suites": [
+        "core"
+      ],
+      "B": 1,
+      "T": 2048,
+      "H": 2,
+      "HV": 2,
+      "K": 128,
+      "V": 128,
+      "seed": 2034,
+      "gate": "weak",
+      "beta": "random",
+      "state": "nonzero"
+    },
+    {
+      "id": "strong_decay",
+      "suites": [
+        "core"
+      ],
+      "B": 1,
+      "T": 257,
+      "H": 2,
+      "HV": 2,
+      "K": 128,
+      "V": 128,
+      "seed": 2035,
+      "gate": "strong",
+      "beta": "random",
+      "state": "nonzero"
+    },
+    {
+      "id": "no_decay_beta_one",
+      "suites": [
+        "core"
+      ],
+      "B": 1,
+      "T": 257,
+      "H": 2,
+      "HV": 2,
+      "K": 128,
+      "V": 128,
+      "seed": 2036,
+      "gate": "zero",
+      "beta": "one",
+      "state": "nonzero"
+    },
+    {
+      "id": "beta_zero_state",
+      "suites": [
+        "core"
+      ],
+      "B": 1,
+      "T": 257,
+      "H": 2,
+      "HV": 2,
+      "K": 128,
+      "V": 128,
+      "seed": 2037,
+      "gate": "weak",
+      "beta": "zero",
+      "state": "nonzero"
+    },
+    {
+      "id": "beta_zero_no_state",
+      "suites": [
+        "core"
+      ],
+      "B": 1,
+      "T": 129,
+      "H": 1,
+      "HV": 1,
+      "K": 128,
+      "V": 128,
+      "seed": 2038,
+      "gate": "moderate",
+      "beta": "zero",
+      "state": "none"
+    },
+    {
+      "id": "beta_edges",
+      "suites": [
+        "core"
+      ],
+      "B": 1,
+      "T": 511,
+      "H": 2,
+      "HV": 2,
+      "K": 128,
+      "V": 128,
+      "seed": 2039,
+      "gate": "weak",
+      "beta": "edges",
+      "state": "nonzero"
+    },
+    {
+      "id": "norm_epsilon",
+      "suites": [
+        "core"
+      ],
+      "B": 1,
+      "T": 129,
+      "H": 1,
+      "HV": 1,
+      "K": 128,
+      "V": 128,
+      "seed": 2040,
+      "gate": "moderate",
+      "beta": "random",
+      "state": "nonzero",
+      "qk_mode": "tiny"
+    },
+    {
+      "id": "zero_qk_rows",
+      "suites": [
+        "core"
+      ],
+      "B": 1,
+      "T": 257,
+      "H": 2,
+      "HV": 2,
+      "K": 128,
+      "V": 128,
+      "seed": 2041,
+      "gate": "moderate",
+      "beta": "random",
+      "state": "nonzero",
+      "qk_mode": "zero_rows"
+    },
+    {
+      "id": "gva_tail",
+      "suites": [
+        "extended"
+      ],
+      "B": 2,
+      "T": 257,
+      "H": 2,
+      "HV": 4,
+      "K": 128,
+      "V": 128,
+      "seed": 2042,
+      "gate": "weak",
+      "beta": "random",
+      "state": "nonzero"
+    },
+    {
+      "id": "non_square_dims",
+      "suites": [
+        "extended"
+      ],
+      "B": 2,
+      "T": 259,
+      "H": 2,
+      "HV": 4,
+      "K": 64,
+      "V": 96,
+      "seed": 2043,
+      "gate": "moderate",
+      "beta": "random",
+      "state": "none"
+    },
+    {
+      "id": "odd_dims",
+      "suites": [
+        "extended"
+      ],
+      "B": 1,
+      "T": 255,
+      "H": 1,
+      "HV": 2,
+      "K": 60,
+      "V": 80,
+      "seed": 2044,
+      "gate": "weak",
+      "beta": "random",
+      "state": "nonzero"
+    },
+    {
+      "id": "model_1k",
+      "suites": [
+        "performance"
+      ],
+      "B": 1,
+      "T": 1024,
+      "H": 32,
+      "HV": 32,
+      "K": 128,
+      "V": 128,
+      "seed": 2045,
+      "gate": "moderate",
+      "beta": "random",
+      "state": "nonzero"
+    },
+    {
+      "id": "model_4k",
+      "suites": [
+        "performance"
+      ],
+      "B": 1,
+      "T": 4096,
+      "H": 32,
+      "HV": 32,
+      "K": 128,
+      "V": 128,
+      "seed": 2046,
+      "gate": "weak",
+      "beta": "random",
+      "state": "nonzero"
+    }
+  ]
+}

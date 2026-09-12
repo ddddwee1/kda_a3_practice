@@ -1,0 +1,82 @@
+{
+  "version": "0.3.0",
+  "operator": "kimi_linear_kda_chunk_prefill",
+  "workload": "Multi-token chunk prefill; token-by-token decode is not the target implementation.",
+  "golden_algorithm": "FLA naive_chunk_kda; chunk-local matrix algebra and inter-chunk state carry",
+  "golden_chunk_size": 64,
+  "golden_tail": "Zero q/k/v/g/beta padding inside the golden only; trim output, preserve final state.",
+  "submission_chunk_size": "Participant choice; no required internal split or launch count.",
+  "source_model": "moonshotai/Kimi-Linear-48B-A3B-Instruct",
+  "layout": "B,T,H,D",
+  "qk_l2norm": true,
+  "qk_l2norm_eps": 1e-06,
+  "qk_l2norm_output_dtype": "bfloat16",
+  "qkv_dtype": "bfloat16",
+  "gate_beta_state_dtype": "float32",
+  "gate": "natural-log decay, already activated, not cumulative; g <= 0",
+  "beta": "already activated; 0 <= beta <= 1",
+  "scale": "K**-0.5",
+  "initial_state": "optional [B,HV,K,V]; None means zero",
+  "output": "(o: bfloat16 [B,T,HV,V], final_state: float32 [B,HV,K,V])",
+  "required_suite": "core",
+  "optional_suites": [
+    "extended",
+    "performance"
+  ],
+  "tolerances_status": "Forward atol=rtol=2e-2 follows the existing EasyASC A5 forward threshold; relative L2 remains 2 percent. Internal compute precision is a participant choice; A3 hardware calibration is still pending.",
+  "tolerances": {
+    "o": {
+      "atol": 0.02,
+      "rtol": 0.02,
+      "relative_l2": 0.02
+    },
+    "final_state": {
+      "atol": 0.02,
+      "rtol": 0.02,
+      "relative_l2": 0.02
+    }
+  },
+  "timing": "Device kernel durations only, summed over actual invocations; no host or launch timing in this checker.",
+  "host_policy": {
+    "kind": "basic_in_process",
+    "allowed": [
+      "element-order-preserving alias/view/reshape/flatten/squeeze/unsqueeze/detach",
+      "uninitialized torch.empty-family allocation",
+      "same-dtype CPU/NPU transport"
+    ],
+    "forbidden": [
+      "numeric tensor computation",
+      "dtype conversion",
+      "slice/index/transpose/permute or materializing reshape",
+      "initialized tensor creation",
+      "tensor data extraction",
+      "reference/alternate-engine imports"
+    ],
+    "runtime": "Direct trusted EasyASC callers inside OpExec; participant callbacks remain audited.",
+    "required": "Observe trusted OpExec runtime operations in every submitted case.",
+    "limitation": "Not a hostile-code sandbox; code review and device evidence remain required."
+  },
+  "tolerances_basis": {
+    "repository_file": "projects/a5/kda_fwd/test_script/module_vs_ref.py",
+    "constants": "DEFAULT_ATOL=2e-2; DEFAULT_RTOL=2e-2",
+    "golden_provenance_unchanged": true
+  },
+  "auxiliary_matrices": {
+    "argument": "aux",
+    "sizes": [
+      32,
+      64,
+      128
+    ],
+    "dtype": "bfloat16",
+    "matrices": {
+      "lower": "L[i,j]=1 if j<=i else 0",
+      "upper": "U[i,j]=1 if i<=j else 0",
+      "ones": "J[i,j]=1",
+      "identity": "I[i,j]=1 if i==j else 0"
+    },
+    "read_only": true,
+    "depends_on_input_values": false,
+    "generation_timing": "Evaluator setup, excluded; device loads and usage count in actual kernel duration."
+  }
+}

@@ -1,0 +1,83 @@
+{
+  "reviewed_on": "2026-09-12",
+  "public_model": {
+    "id": "moonshotai/Kimi-Linear-48B-A3B-Instruct",
+    "revision": "e1df551a447157d4658b573f9a695d57658590e9",
+    "files": [
+      {
+        "path": "modeling_kimi.py",
+        "url": "https://huggingface.co/moonshotai/Kimi-Linear-48B-A3B-Instruct/resolve/e1df551a447157d4658b573f9a695d57658590e9/modeling_kimi.py",
+        "sha256": "d79b365e37378881b9f1585007a56e236ca27a414920943cb85d1dacb75dda99",
+        "bytes": 42975
+      },
+      {
+        "path": "config.json",
+        "url": "https://huggingface.co/moonshotai/Kimi-Linear-48B-A3B-Instruct/resolve/e1df551a447157d4658b573f9a695d57658590e9/config.json",
+        "sha256": "a6ac3c2c4b5aa72370f9727f49ffa4432715d20061889acdb37c688be853096e",
+        "bytes": 1751
+      }
+    ]
+  },
+  "fla": {
+    "revision": "516143e31fce09925e6c39ac37148444bad176c4",
+    "files": [
+      {
+        "path": "fla/ops/kda/naive.py",
+        "url": "https://raw.githubusercontent.com/fla-org/flash-linear-attention/516143e31fce09925e6c39ac37148444bad176c4/fla/ops/kda/naive.py",
+        "sha256": "60a32285d4b67068ff633b48bbe8ab31028066d24f00d27e12199a88fc73f016",
+        "bytes": 6339
+      },
+      {
+        "path": "tests/ops/test_kda.py",
+        "url": "https://raw.githubusercontent.com/fla-org/flash-linear-attention/516143e31fce09925e6c39ac37148444bad176c4/tests/ops/test_kda.py",
+        "sha256": "d58a91f33c76e0d4593a6d6790cd2d455c682d4f09e018562645fb38f39f4e22",
+        "bytes": 55713
+      },
+      {
+        "path": "LICENSE",
+        "url": "https://raw.githubusercontent.com/fla-org/flash-linear-attention/516143e31fce09925e6c39ac37148444bad176c4/LICENSE",
+        "sha256": "41a83c8187efc1e3ccc21909e806a9e52338e69448554d9754706c3d1cd610e7",
+        "bytes": 1096
+      },
+      {
+        "path": "fla/modules/l2norm.py",
+        "url": "https://raw.githubusercontent.com/fla-org/flash-linear-attention/516143e31fce09925e6c39ac37148444bad176c4/fla/modules/l2norm.py",
+        "sha256": "5160cc4ff716c9975c655b81fd0e1bae700501dff3b4d6b045680a93185a1e99",
+        "bytes": 7792
+      },
+      {
+        "path": "fla/ops/kda/chunk.py",
+        "url": "https://raw.githubusercontent.com/fla-org/flash-linear-attention/516143e31fce09925e6c39ac37148444bad176c4/fla/ops/kda/chunk.py",
+        "sha256": "0aba0e90118eb8ed18de25ade156616d25e0814863435d9986440bd39261fffb",
+        "bytes": 22342
+      }
+    ]
+  },
+  "vendored_file": "fla_naive.py",
+  "vendored_sha256": "ca4250832a2c8ed728bbac8541fd3cde7b8db7223848cfe9f1093c641ff3eff9",
+  "adaptations": [
+    "Import typing.Optional and replace PEP 604 union annotations.",
+    "Parenthesize starred tuple expressions for Python 3.8 syntax."
+  ],
+  "mathematical_changes_to_vendored_reference": [],
+  "boundary": "KimiDeltaAttention KDA call, including Q/K L2 normalization; post-activation g and beta; no projections, convolution, output norm or output projection.",
+  "model_call_lines": [
+    560,
+    561,
+    568,
+    576,
+    580,
+    588
+  ],
+  "model_shape": {
+    "H": 32,
+    "HV": 32,
+    "K": 128,
+    "V": 128
+  },
+  "golden_roles": {
+    "primary": "naive_chunk_kda via golden.chunk_prefill; bounded per-chunk calls and neutral tail padding",
+    "independent_verifier": "naive_recurrent_kda via golden.recurrent_reference",
+    "unchanged_vendor": true
+  }
+}
