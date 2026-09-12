@@ -10,9 +10,11 @@
 
 EasyASC 是用于编写昇腾 kernel 的 Python DSL。你通过 Python 函数描述设备上的计算、数据搬运、缓冲区和同步，框架将其转换为指令表示，组织 Cube 与 Vector 执行路径，并支持内置 simulator、设备代码生成和设备运行。
 
+**本题使用 cannbot-skills 中的 [EasyASC 社区版本（ops-easyasc-dsl）](https://gitcode.com/cann/cannbot-skills/tree/master/plugins-community/ops-easyasc-dsl)。** 请按该社区入口的说明准备源码和环境。编写纯净 kernel 时，直接以 **EasyASC 源码根目录的 `AGENTS.md`** 作为 AI agent 的入口，再按该文档指引读取后续材料。
+
 你可以从一个小 kernel 入手，理解计算如何映射到硬件管道，再逐步扩展为多 kernel 系统。仓库中的 A5 `kda_fwd`、`kda_bwd` 提供了已有工程实现，可用于研究数学分解、数据流、融合和同步。移植到 A3 时，需要重新评估这些选择。
 
-本习题目录与 EasyASC 仓库独立：运行 PyTorch golden 和题包自检只需要题包的 Python 依赖；开发、仿真和运行 EasyASC kernel 时，需要另行准备 EasyASC 仓库。
+本习题目录与 EasyASC 源码独立：运行 PyTorch golden 和题包自检只需要题包的 Python 依赖；开发、仿真和运行 EasyASC kernel 时，需要从上述社区入口准备 EasyASC 源码，并将其根目录设为后文的 `EASYASC_ROOT`。
 
 ```text
 kda_a3_practice/
@@ -35,7 +37,7 @@ kda_a3_practice/
 | 学习编程模型与 kernel 写法 | `doc/02_programming_model.md`、`doc/03_write_your_first_kernel.md` |
 | 理解混合流水线与同步 | `doc/04_mixed_pipeline_and_sync.md` |
 | 使用 simulator 和 trace | `doc/05_simulator_and_trace.md` |
-| 配合 AI agent 开发 | `AGENTS.md`、`agent/ROUTER.md` |
+| 配合 AI agent 开发 | 从 `AGENTS.md` 开始，再按指引进入 `agent/ROUTER.md` |
 | 查询 API 与设备约束 | `doc/api/index.md`、`agent/references/facts-device-runtime.md` |
 | 查找小型 kernel | `kernels/README.md` |
 | 研究 A5 KDA 实现 | `projects/a5/kda_fwd/README.md`、`projects/a5/kda_bwd/README.md` |
@@ -62,7 +64,7 @@ Vector： GM → UB → 向量计算 → UB → GM
 
 ### 使用 AI agent 与 EasyASC 配合
 
-**`AGENTS.md` 提供仓库级协作约定，`agent/ROUTER.md` 是具体任务的工作流入口，两者配合使用。** 让 agent 能够访问 EasyASC 仓库和本习题目录，并明确告知两个目录的实际路径。如果使用的工具会自动加载 `AGENTS.md`，可以直接要求它从 router 开始；否则先明确要求它读取仓库根目录的 `AGENTS.md`。
+**编写纯净 kernel 时，直接从 EasyASC 源码根目录的 `AGENTS.md` 开始。** 它提供仓库级协作约定，并引导 agent 通过 `agent/ROUTER.md` 选择具体任务的工作流。让 agent 能够访问 EasyASC 源码和本习题目录，并明确告知两个目录的实际路径；如果工具不会自动加载 `AGENTS.md`，请显式指定该文件的绝对路径，要求 agent 先读取它。
 
 获取仓库约定后，具体任务按以下顺序展开。这里的路径均相对于 EasyASC 仓库根目录：
 
