@@ -285,3 +285,11 @@ A5 前向中的门控处理、chunk 内计算、WY 中间量生成、状态更�
 ```bash
 python build_package.py --output dist/kda_a3_practice_v0.3.0.zip
 ```
+
+## 扩展 EasyASC 与问题反馈
+
+EasyASC 是 Ascend C 的轻量级 Python 封装，你可以根据需求自行扩展 API，对接 Ascend C 的更多能力。由已有操作组合而成的功能，可以封装为可复用的组合 API；接入新的底层操作时，通常需要在 `easyasc/stub_functions/` 中定义接口、参数校验和指令生成，在 `easyasc/targets/ascendc/` 中实现并注册对应的代码生成逻辑，并在 `easyasc/simulator/` 中补充模拟执行逻辑及管道路由。同时需要接好目标设备的公共 API 导出和同步所需的读写信息；涉及性能估计时，再补充相应的时序模型。
+
+这些路径均相对于 EasyASC 仓库根目录。具体扩展方法可参考 `doc/11_architecture_for_contributors.md` 和 `agent/references/code-paths.md`，并结合相近 API 的实现，验证参数约束、生成代码与 simulator 行为。欢迎将做题过程中新增的 API、组合库和开发工具整理为可复用的贡献。
+
+如果对本习题或 EasyASC 有任何问题，包括接口使用、框架行为、功能需求和题目建议，都欢迎到[本习题仓提交 issue](https://github.com/ddddwee1/kda_a3_practice/issues)。涉及具体错误时，请尽量附上最小复现代码、输入形状、运行环境和相关日志，便于共同定位与讨论。
